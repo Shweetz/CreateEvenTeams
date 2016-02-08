@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class Former {
 
-	public final boolean DEBUG = true;
+	public final boolean DEBUG = false;
 	public final int DIV = 0;
 	public final int SCORE = 1;
 	public final int NAME = 2;
