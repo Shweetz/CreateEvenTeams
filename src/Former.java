@@ -1,6 +1,7 @@
 import java.io.RandomAccessFile;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class Former {
 
@@ -39,7 +40,7 @@ public class Former {
 	private void printResult() {
 		for (int i = 1; i < nbEquipes + 1; ++i)
 		{
-			result += "\nTeam " + i + ", " + teamPoints[i] + " pts\n";
+			result += "\nTeam " + i + ": " + teamPoints[i] + " pts\n";
 			
 			for (int j = 0; j < nbJoueurs; ++j)
 			{
@@ -137,8 +138,27 @@ public class Former {
 				String[] mots = ligne.split(" ");
 				if (mots.length == 2)
 				{
+					// On stocke la division du joueur (1er mot de la ligne)
 					tab[i][DIV] = mots[0];
-					tab[i][SCORE] = Integer.toString(tierValueMap.get(mots[0]));
+					
+					// On récupère le score depuis le mapping
+					if (new Scanner(mots[0]).hasNextInt()) // si valeur en input
+					{
+						tab[i][SCORE] = mots[0];
+					}
+					else
+					{
+						if (tierValueMap.get(mots[0]) != null) // si division en input
+						{
+							tab[i][SCORE] = Integer.toString(tierValueMap.get(mots[0]));
+						}
+						else // si ni valeur ni division mappée => erreur
+						{
+							System.out.println("Erreur, la valeur ligne "+i+" n'est ni un nombre ni mappée !");
+						}
+					}
+					
+					// On stocke le nom du joueur (2e mot de la ligne)
 					tab[i][NAME] = mots[1];
 					
 					// Affectation à une équipe
