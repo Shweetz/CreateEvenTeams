@@ -1,0 +1,7 @@
+B3 A
+G3 B
+S3 C
+P3 D
+D3 E
+G3 F
+B3 G
